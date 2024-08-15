@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.moese.file.mapper.DocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.moese.file.entity.Doc">
+        <id column="doc_id" property="docId" />
+        <result column="doc_name" property="docName" />
+        <result column="doc_size" property="docSize" />
+        <result column="doc_sha256" property="docSha256" />
+        <result column="doc_create_date" property="docCreateDate" />
+        <result column="doc_user_id" property="docUserId" />
+        <result column="doc_path" property="docPath" />
+        <result column="doc_open" property="docOpen" />
+        <result column="doc_type" property="docType" />
+        <result column="doc_title" property="docTitle" />
+        <result column="doc_content" property="docContent" />
+        <result column="doc_delete" property="docDelete" />
+        <result column="doc_modify_date" property="docModifyDate" />
+        <result column="source" property="source"/>
+        <result column="source_url" property="sourceUrl"/>
+        <result column="doc_status" property="docStatus"/>
+        <result column="doc_convert" property="docConvert"/>
+    </resultMap>
+
+
+    <select id="queryDocTypeNumber" resultType="java.util.Map">
+        SELECT
+            (
+                SELECT
+                    sum(1)
+                FROM
+                    tb_doc AS d
+                WHERE 1=1
+                    AND d.doc_type = 'pdf'
+                    AND d.doc_delete = 0
+                    AND d.doc_user_id = #{docUserId}
+            ) AS pdfNumber,
+            (
+                SELECT
+                    sum(1)
+                FROM
+                    tb_doc AS d
+                WHERE 1=1
+                AND (d.doc_type = 'doc' or d.doc_type = 'docx')
+                AND d.doc_delete = 0
+                AND d.doc_user_id = #{docUserId}
+            ) AS wordNumber,
+            (
+                SELECT
+                    sum(1)
+                FROM
+                    tb_doc AS d
+                WHERE 1=1
+                      AND (d.doc_type = 'ppt' or d.doc_type = 'pptx')
+                      AND d.doc_delete = 0
+                      AND d.doc_user_id = #{docUserId}
+            ) AS pptNumber,
+            (
+                SELECT
+                    sum(1)
+                FROM
+                    tb_doc AS d
+                WHERE 1=1
+                      AND (d.doc_type = 'xls' or d.doc_type = 'xlsx')
+                      AND d.doc_delete = 0
+                      AND d.doc_user_id = #{docUserId}
+            ) AS excelNumber,
+            (
+                SELECT
+                    sum(1)
+                FROM
+                    tb_doc AS d
+                WHERE 1=1
+                      AND (d.doc_type = 'html')
+                      AND d.doc_delete = 0
+                      AND d.doc_user_id = #{docUserId}
+            ) AS htmlNumber,
+            (
+                SELECT
+                    sum(1)
+                FROM
+                    tb_doc AS d
+                WHERE 1=1
+                      AND d.doc_delete = 0
+                      AND d.doc_user_id = #{docUserId}
+            ) AS totalNumber
+    </select>
+
+    <select id="findDoc" resultMap="BaseResultMap" parameterType="java.util.Map">
+        select * from  tb_doc as d where 1=1
+        <if test="docName!=null and docName!=''">
+            and d.doc_name like concat('%',#{docName},'%')
+        </if>
+        <if test="docType!=null and docType=='pdf'">
+            and (d.doc_type = 'pdf' or d.doc_type = 'pptx')
+        </if>
+        <if test="docType!=null and docType=='word'">
+            and (d.doc_type = 'doc' or d.doc_type = 'docx')
+        </if>
+        <if test="docType!=null and docType=='powerpoint'">
+            and (d.doc_type = 'ppt' or d.doc_type = 'pptx')
+        </if>
+        <if test="docType!=null and docType=='excel'">
+            and (d.doc_type = 'xls' or d.doc_type = 'xlsx')
+        </if>
+        <if test="docType!=null and docType=='html'">
+            and (d.doc_type = 'html')
+        </if>
+        <if test="docType!=null and docType=='evernote'">
+            and (d.doc_type = 'evernote')
+        </if>
+        <if test="docUserId!=null">
+            and d.doc_user_id = #{docUserId}
+        </if>
+        and d.doc_delete = 0
+        order by d.doc_id desc
+    </select>
+</mapper>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.moese.file.mapper.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.moese.file.entity.User">
+        <id column="user_id" property="userId" />
+        <result column="user_name" property="userName" />
+        <result column="user_pwd" property="userPwd" />
+        <result column="user_mail" property="userMail" />
+        <result column="register_date" property="registerDate" />
+        <result column="user_token" property="userToken" />
+        <result column="user_salt" property="userSalt" />
+        <result column="nick_name" property="nickName" />
+        <result column="portrait_id" property="portraitId" />
+    </resultMap>
+
+</mapper>

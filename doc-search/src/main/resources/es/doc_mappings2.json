@@ -1,0 +1,88 @@
+{
+  "properties": {
+    "docContent": {
+      "type": "text",
+      "analyzer": "ik_smart",
+      "term_vector" : "with_positions_offsets"
+    },
+    "docCreateDate": {
+      "type": "date",
+      "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis"
+    },
+    "docDelete": {
+      "type": "long"
+    },
+    "docFileId": {
+      "type": "text",
+      "fields": {
+        "keyword": {
+          "type": "keyword",
+          "ignore_above": 256
+        }
+      }
+    },
+    "docId": {
+      "type": "long"
+    },
+    "docIndex": {
+      "type": "long"
+    },
+    "docModifyDate": {
+      "type": "date",
+      "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis"
+    },
+    "docName": {
+      "type": "text",
+      "boost": 5.0,
+      "analyzer": "ik_smart"
+    },
+    "docOpen": {
+      "type": "long"
+    },
+    "docPath": {
+      "type": "text",
+      "fields": {
+        "keyword": {
+          "type": "keyword",
+          "ignore_above": 256
+        }
+      }
+    },
+    "docSha256": {
+      "type": "keyword"
+    },
+    "docSize": {
+      "type": "long"
+    },
+    "docStatus": {
+      "type": "long"
+    },
+    "docTitle": {
+      "type": "text",
+      "boost": 5.0,
+      "analyzer": "ik_smart",
+      "term_vector" : "with_positions_offsets"
+    },
+    "docType": {
+      "type": "keyword"
+    },
+    "docUserId": {
+      "type": "long"
+    },
+    "id": {
+      "type": "text",
+      "fields": {
+        "keyword": {
+          "type": "keyword",
+          "ignore_above": 256
+        }
+      }
+    },
+    "source": {
+      "type": "text"
+    },
+    "sourceUrl": {
+      "type": "text"
+    }
+  }
+}

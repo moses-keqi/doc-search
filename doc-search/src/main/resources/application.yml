@@ -1,0 +1,17 @@
+server:
+  port: 9090
+  servlet:
+    context-path: /doc-search
+
+spring:
+  devtools:
+    restart:
+      enabled: false
+  profiles:
+    active: mac
+  servlet:
+    multipart:
+      max-request-size: 512MB
+      max-file-size: 512MB
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/*.xml

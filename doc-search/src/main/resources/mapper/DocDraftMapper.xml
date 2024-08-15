@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.moese.file.mapper.DocDraftMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.moese.file.entity.DocDraft">
+        <id column="draft_doc_id" property="draftDocId" />
+        <result column="draft_save_date" property="draftSaveDate" />
+        <result column="draft_doc_content" property="draftDocContent" />
+        <result column="draft_doc_title" property="draftDocTitle" />
+    </resultMap>
+
+</mapper>

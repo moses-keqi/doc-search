@@ -1,0 +1,24 @@
+base:
+  upload-dir: /data/document/upload
+  soffice-path: /Applications/LibreOffice.app/Contents/MacOS/soffice
+
+mail:
+  smtp: smtp.163.com
+  password: doc-search
+  name: your_account@163.com
+
+spring:
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:127.0.0.1}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:doc-search}?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:xLnHamLbN9RD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  elasticsearch:
+#    uris: http://192.168.0.100:3014
+    uris: http://127.0.0.1:9200
+logging:
+  level:
+    com.baomidou: info
+    com.moese.file: info
+    com.ibatis: info
+    org.elasticsearch: info

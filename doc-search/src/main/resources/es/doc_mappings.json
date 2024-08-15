@@ -1,0 +1,58 @@
+{
+  "properties": {
+    "docName": {
+      "type": "text",
+      "boost": 5,
+      "index": true,
+      "analyzer": "ik_smart",
+      "search_analyzer": "ik_smart"
+    },
+    "docSize": {
+      "type": "long"
+    },
+    "docSha256": {
+      "type": "keyword"
+    },
+    "docCreateDate": {
+      "type": "date",
+      "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis"
+    },
+    "docUserId": {
+      "type": "long"
+    },
+    "docOpen": {
+      "type": "long"
+    },
+    "docType": {
+      "type": "keyword"
+    },
+    "docTitle": {
+      "type": "text",
+      "boost": 5,
+      "index": true,
+      "analyzer": "ik_smart",
+      "search_analyzer": "ik_smart",
+      "index_options" : "offsets"
+    },
+    "docContent": {
+      "type": "text",
+      "index": true,
+      "analyzer": "ik_smart",
+      "search_analyzer": "ik_smart",
+      "index_options" : "offsets"
+    },
+    "docDelete": {
+      "type": "long"
+    },
+    "docModifyDate": {
+      "type": "date",
+      "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis"
+    },
+    "source": {
+      "type": "text"
+    },
+    "sourceUrl":{
+      "type": "text"
+    }
+  }
+}

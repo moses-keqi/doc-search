@@ -1,0 +1,46 @@
+version: '3.7'
+services:
+  doc-search:
+    image: moese/doc-search:20240815001
+    container_name: doc-search
+    restart: always
+    ports:
+      - "8081:80"
+    volumes:
+      - /data/document/upload:/data/document/upload
+    environment:
+      - "base.soffice-path=libreoffice"
+      - "spring.elasticsearch.uris=http://elasticsearch:9200"
+      - "MYSQL_DATABASE=doc-search"
+      - "MYSQL_PASSWORD=xLnHamLbN9RD"
+      - "MYSQL_USER=root"
+      - "MYSQL_HOST=mysql"
+      - "MYSQL_PORT=3306"
+    links:
+      - elasticsearch
+    networks:
+      application:
+        aliases:
+          - doc-search
+  elasticsearch:
+    image: elasticsearch:7.17.3
+    container_name: elasticsearch
+    restart: always
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      - "discovery.type=single-node"
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    volumes:
+      - ./data/data:/usr/share/elasticsearch/data
+      - ./data/plugins:/usr/share/elasticsearch/plugins
+    networks:
+      application:
+        aliases:
+          - elasticsearch
+networks:
+  application:
+    external: true
+    name: commons
+    driver: bridge

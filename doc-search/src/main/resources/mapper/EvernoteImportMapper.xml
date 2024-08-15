@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.moese.file.mapper.EvernoteImportMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.moese.file.entity.EvernoteImport">
+        <id column="evernote_id" property="evernoteId" />
+        <result column="import_date" property="importDate" />
+        <result column="success_size" property="successSize" />
+        <result column="user_id" property="userId" />
+        <result column="import_status" property="importStatus" />
+        <result column="evernote_file_id" property="evernoteFileId" />
+        <result column="import_result" property="importResult" />
+    </resultMap>
+
+</mapper>

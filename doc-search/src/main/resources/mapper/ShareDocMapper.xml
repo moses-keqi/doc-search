@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.moese.file.mapper.ShareDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.moese.file.entity.ShareDoc">
+        <id column="share_id" property="shareId" />
+        <result column="share_to" property="shareTo" />
+        <result column="share_date" property="shareDate" />
+        <result column="doc_id" property="docId" />
+        <result column="valid_time" property="validTime" />
+    </resultMap>
+
+</mapper>
